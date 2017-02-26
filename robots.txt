@@ -1,0 +1,4 @@
+//robots.txt gennerated at http://www.skywatcher.me
+User-agent: Baiduspider
+
+Disallow: /

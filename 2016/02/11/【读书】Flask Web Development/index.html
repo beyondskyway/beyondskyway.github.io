@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【读书】Flask Web Development | SkyWatcher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC]
+写在前面之前把flask的网络教程看了一遍，但是那个教程相对于《Flask Web Development》属于入门级，像应用结构和数据库方面都相对简单，其中有些东西也没讲的太清楚，于是再来刷一遍，希望会有点收获！
+第一章 安装第二章 程序的基本结构
+bofore_first_request
+manager
+
+第三章 模板
+jinja宏
+moment
+
+第四章 表单
+wtform字段">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【读书】Flask Web Development">
+<meta property="og:url" content="http://www.skywatcher.me/2016/02/11/【读书】Flask Web Development/index.html">
+<meta property="og:site_name" content="SkyWatcher">
+<meta property="og:description" content="[TOC]
+写在前面之前把flask的网络教程看了一遍，但是那个教程相对于《Flask Web Development》属于入门级，像应用结构和数据库方面都相对简单，其中有些东西也没讲的太清楚，于是再来刷一遍，希望会有点收获！
+第一章 安装第二章 程序的基本结构
+bofore_first_request
+manager
+
+第三章 模板
+jinja宏
+moment
+
+第四章 表单
+wtform字段">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451463204173">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451463204665">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451465235129">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451466272990">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451466797143">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451466919853">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451467454025">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451467454728">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1452173674965">
+<meta property="og:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1452173788172">
+<meta property="og:updated_time" content="2017-02-25T23:21:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【读书】Flask Web Development">
+<meta name="twitter:description" content="[TOC]
+写在前面之前把flask的网络教程看了一遍，但是那个教程相对于《Flask Web Development》属于入门级，像应用结构和数据库方面都相对简单，其中有些东西也没讲的太清楚，于是再来刷一遍，希望会有点收获！
+第一章 安装第二章 程序的基本结构
+bofore_first_request
+manager
+
+第三章 模板
+jinja宏
+moment
+
+第四章 表单
+wtform字段">
+<meta name="twitter:image" content="http://7ximdq.com1.z0.glb.clouddn.com/1451463204173">
+  
+    <link rel="alternative" href="/atom.xml" title="SkyWatcher" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7ximdq.com1.z0.glb.clouddn.com/1432121222193" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">SkyWatcher</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Sharing changes the world!</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/编程">编程</a></li>
+				        
+							<li><a href="/categories/杂记">杂记</a></li>
+				        
+							<li><a href="/Photos">相册</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/beyondskyway/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/u/5119463701" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/skyway" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Cron/" style="font-size: 10px;">Cron</a> <a href="/tags/JS/" style="font-size: 13.33px;">JS</a> <a href="/tags/KVDB/" style="font-size: 10px;">KVDB</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/SAE/" style="font-size: 10px;">SAE</a> <a href="/tags/SQLAlchemy/" style="font-size: 10px;">SQLAlchemy</a> <a href="/tags/alloca/" style="font-size: 10px;">alloca</a> <a href="/tags/calloc/" style="font-size: 10px;">calloc</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/flask/" style="font-size: 13.33px;">flask</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/goagent/" style="font-size: 10px;">goagent</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/kvdb/" style="font-size: 13.33px;">kvdb</a> <a href="/tags/memmove/" style="font-size: 10px;">memmove</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/python-flask/" style="font-size: 10px;">python flask</a> <a href="/tags/realloc/" style="font-size: 10px;">realloc</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/swipe/" style="font-size: 10px;">swipe</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/七牛/" style="font-size: 13.33px;">七牛</a> <a href="/tags/反思/" style="font-size: 10px;">反思</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/微信JS-SDK/" style="font-size: 10px;">微信JS-SDK</a> <a href="/tags/拉黑/" style="font-size: 10px;">拉黑</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/时间戳/" style="font-size: 10px;">时间戳</a> <a href="/tags/简历/" style="font-size: 10px;">简历</a> <a href="/tags/翻墙/" style="font-size: 10px;">翻墙</a> <a href="/tags/语音/" style="font-size: 10px;">语音</a> <a href="/tags/调试/" style="font-size: 10px;">调试</a> <a href="/tags/进程通信/" style="font-size: 10px;">进程通信</a> <a href="/tags/阿里云/" style="font-size: 10px;">阿里云</a> <a href="/tags/高校之恋/" style="font-size: 16.67px;">高校之恋</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">Coding changes the world! Huster，研二，热爱编程、互联网技术，熟悉C/C++，Python，目前学习JS等前端技术。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">SkyWatcher</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7ximdq.com1.z0.glb.clouddn.com/1432121222193" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">SkyWatcher</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Sharing changes the world!</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/编程">编程</a></li>
+		        
+					<li><a href="/categories/杂记">杂记</a></li>
+		        
+					<li><a href="/Photos">相册</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/beyondskyway/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/u/5119463701" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/skyway" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-【读书】Flask Web Development" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/11/【读书】Flask Web Development/" class="article-date">
+  	<time datetime="2016-02-11T07:54:37.000Z" itemprop="datePublished">2016-02-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【读书】Flask Web Development
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-flask/">python flask</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/编程/">编程</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h2 id="写在前面">写在前面</h2><p>之前把flask的网络教程看了一遍，但是那个教程相对于《Flask Web Development》属于入门级，像应用结构和数据库方面都相对简单，其中有些东西也没讲的太清楚，于是再来刷一遍，希望会有点收获！</p>
+<h2 id="第一章_安装">第一章 安装</h2><h2 id="第二章_程序的基本结构">第二章 程序的基本结构</h2><ul>
+<li>bofore_first_request</li>
+<li>manager</li>
+</ul>
+<h2 id="第三章_模板">第三章 模板</h2><ul>
+<li>jinja宏</li>
+<li>moment</li>
+</ul>
+<h2 id="第四章_表单">第四章 表单</h2><ul>
+<li>wtform字段<br><img src="http://7ximdq.com1.z0.glb.clouddn.com/1451463204173" alt="此处输入图片的描述"></li>
+<li>wtform验证函数<br><img src="http://7ximdq.com1.z0.glb.clouddn.com/1451463204665" alt="此处输入图片的描述"></li>
+<li>POST/重定向/GET模式</li>
+</ul>
+<h2 id="第五章_数据库">第五章 数据库</h2><ul>
+<li>Python数据库：MySQL，Postgress，SQLite，Redis，MongoDB，CouchDB</li>
+<li>Python ORM（Object-Relational Mapper） or ODM(Object-Document Mapper)<br>(1)SQLAlchemy:支持MySQL，Postgress和SQLite等<br>(2)MongoEngine:</li>
+<li>数据库连接<br><img src="http://7ximdq.com1.z0.glb.clouddn.com/1451465235129" alt="此处输入图片的描述"></li>
+<li>SQLAlchemy列类型<br><img src="http://7ximdq.com1.z0.glb.clouddn.com/1451466272990" alt="此处输入图片的描述"><br>（primary_key, unique, index, nullable, default）</li>
+<li>关系<br>如果User 模型中有两个或以上的列定义为Role 模型的外键，SQLAlchemy 就不知道该使用哪列。如果无法决定外键，你就要为db.relationship()提供额外参数，从而确定所用外键。<br><img src="http://7ximdq.com1.z0.glb.clouddn.com/1451466797143" alt="此处输入图片的描述"><br><img src="http://7ximdq.com1.z0.glb.clouddn.com/1451466919853" alt="此处输入图片的描述"></li>
+<li>过滤器和触发查询函数<br><img src="http://7ximdq.com1.z0.glb.clouddn.com/1451467454025" alt="此处输入图片的描述"><br><img src="http://7ximdq.com1.z0.glb.clouddn.com/1451467454728" alt="此处输入图片的描述"></li>
+<li>数据库迁移</li>
+</ul>
+<h2 id="第六章_电子邮件">第六章 电子邮件</h2><ul>
+<li><p>环境变量导入敏感信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#linux</div><div class="line">(venv) $ export MAIL_USERNAME=&lt;Gmail username&gt;</div><div class="line">(venv) $ export MAIL_PASSWORD=&lt;Gmail password&gt;</div><div class="line"></div><div class="line">#windows</div><div class="line">(venv) $ set MAIL_USERNAME=&lt;Gmail username&gt;</div><div class="line">(venv) $ set MAIL_PASSWORD=&lt;Gmail password&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>异步发送</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">from threading import Thread</div><div class="line"></div><div class="line">def send_async_email(app, msg):</div><div class="line">    with app.app_context():</div><div class="line">        mail.send(msg)</div><div class="line"></div><div class="line">def send_email(to, subject, template, **kwargs):</div><div class="line">    msg = Message(app.config[&apos;FLASKY_MAIL_SUBJECT_PREFIX&apos;] + subject, sender=app.config[&apos;FLASKY_MAIL_SENDER&apos;], recipients=[to])</div><div class="line">    msg.body = render_template(template + &apos;.txt&apos;, **kwargs)</div><div class="line">    msg.html = render_template(template + &apos;.html&apos;, **kwargs)</div><div class="line">    thr = Thread(target=send_async_email, args=[app, msg])</div><div class="line">    thr.start()</div><div class="line">    return thr</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>在不同线程中执行mail.send()函数时，程序上下文要使用app.app_context() 人工创建。</em></p>
+<p>程序要发送大量电子邮件时，使用专门发送电子邮件的作业要比给每封邮件都新建一个线程更合适。例如，我们可以把执行send_async_email()函数的操作发给<strong>Celery</strong>（<a href="http://www.celeryproject.org/）任务队列。" target="_blank" rel="external">http://www.celeryproject.org/）任务队列。</a></p>
+<h2 id="第七章_大型程序结构">第七章 大型程序结构</h2><ul>
+<li>项目结构<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">|-flasky</div><div class="line">    |-app/</div><div class="line">        |-templates/</div><div class="line">        |-static/</div><div class="line">        |-main/</div><div class="line">            |-__init__.py</div><div class="line">            |-errors.py</div><div class="line">            |-forms.py</div><div class="line">            |-views.py</div><div class="line">        |-__init__.py</div><div class="line">        |-email.py</div><div class="line">        |-models.py</div><div class="line">    |-migrations/</div><div class="line">    |-tests/</div><div class="line">        |-__init__.py</div><div class="line">        |-test*.py</div><div class="line">    |-venv/</div><div class="line">    |-requirements.txt</div><div class="line">    |-config.py</div><div class="line">    |-manage.py</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>*　配置选项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"># config.py</div><div class="line">import os</div><div class="line">basedir = os.path.abspath(os.path.dirname(__file__))</div><div class="line"></div><div class="line">class Config:</div><div class="line">    SECRET_KEY = os.environ.get(&apos;SECRET_KEY&apos;) or &apos;hard to guess string&apos;</div><div class="line">    SQLALCHEMY_COMMIT_ON_TEARDOWN = True</div><div class="line">    FLASKY_MAIL_SUBJECT_PREFIX = &apos;[Flasky]&apos;</div><div class="line">    FLASKY_MAIL_SENDER = &apos;Flasky Admin &lt;flasky@example.com&gt;&apos;</div><div class="line">    FLASKY_ADMIN = os.environ.get(&apos;FLASKY_ADMIN&apos;)</div><div class="line">    </div><div class="line">    @staticmethod</div><div class="line">    def init_app(app):</div><div class="line">        pass</div><div class="line"></div><div class="line">class DevelopmentConfig(Config):</div><div class="line">    DEBUG = True</div><div class="line">    MAIL_SERVER = &apos;smtp.googlemail.com&apos;</div><div class="line">    MAIL_PORT = 587</div><div class="line">    MAIL_USE_TLS = True</div><div class="line">    MAIL_USERNAME = os.environ.get(&apos;MAIL_USERNAME&apos;)</div><div class="line">    MAIL_PASSWORD = os.environ.get(&apos;MAIL_PASSWORD&apos;)</div><div class="line">    SQLALCHEMY_DATABASE_URI = os.environ.get(&apos;DEV_DATABASE_URL&apos;) or \</div><div class="line">        &apos;sqlite:///&apos; + os.path.join(basedir, &apos;data-dev.sqlite&apos;)</div><div class="line"></div><div class="line">class TestingConfig(Config):</div><div class="line">    TESTING = True</div><div class="line">    SQLALCHEMY_DATABASE_URI = os.environ.get(&apos;TEST_DATABASE_URL&apos;) or \</div><div class="line">        &apos;sqlite:///&apos; + os.path.join(basedir, &apos;data-test.sqlite&apos;)</div><div class="line"></div><div class="line">class ProductionConfig(Config):</div><div class="line">    SQLALCHEMY_DATABASE_URI = os.environ.get(&apos;DATABASE_URL&apos;) or \</div><div class="line">        &apos;sqlite:///&apos; + os.path.join(basedir, &apos;data.sqlite&apos;)</div><div class="line"></div><div class="line">config = &#123;</div><div class="line">    &apos;development&apos;: DevelopmentConfig,</div><div class="line">    &apos;testing&apos;: TestingConfig,</div><div class="line">    &apos;production&apos;: ProductionConfig,</div><div class="line">    &apos;default&apos;: DevelopmentConfig</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>工厂函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"># app/__init__.py</div><div class="line">from flask import Flask, render_template</div><div class="line">from flask.ext.bootstrap import Bootstrap</div><div class="line">from flask.ext.mail import Mail</div><div class="line">from flask.ext.moment import Moment</div><div class="line">from flask.ext.sqlalchemy import SQLAlchemy</div><div class="line">from config import config</div><div class="line"></div><div class="line">bootstrap = Bootstrap()</div><div class="line">mail = Mail()</div><div class="line">moment = Moment()</div><div class="line">db = SQLAlchemy()</div><div class="line"></div><div class="line">def create_app(config_name):</div><div class="line">    app = Flask(__name__)</div><div class="line">    app.config.from_object(config[config_name])</div><div class="line">    config[config_name].init_app(app)</div><div class="line">    bootstrap.init_app(app)</div><div class="line">    mail.init_app(app)</div><div class="line">    moment.init_app(app)</div><div class="line">    db.init_app(app)</div><div class="line">    # 附加路由和自定义的错误页面</div><div class="line">    return app</div></pre></td></tr></table></figure>
+</li>
+<li><p>蓝本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#app/main/__init__.py：创建蓝本</div><div class="line">from flask import Blueprint</div><div class="line">main = Blueprint(&apos;main&apos;, __name__)</div><div class="line">from . import views, errors</div><div class="line"></div><div class="line">#app/_init_.py：注册蓝本</div><div class="line">def create_app(config_name):</div><div class="line">    # ...</div><div class="line">    from .main import main as main_blueprint</div><div class="line">    app.register_blueprint(main_blueprint)</div><div class="line">    return app</div><div class="line">    </div><div class="line"># app/main/errors.py：蓝本中的错误处理程序</div><div class="line">from flask import render_template</div><div class="line">from . import main</div><div class="line"></div><div class="line">@main.app_errorhandler(404)</div><div class="line">def page_not_found(e):</div><div class="line">    return render_template(&apos;404.html&apos;), 404</div><div class="line"></div><div class="line">@main.app_errorhandler(500)</div><div class="line">def internal_server_error(e):</div><div class="line">    return render_template(&apos;500.html&apos;), 500</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果使用errorhandler修饰器，那么只有蓝本中的错误才能触发处理程序。要想注册程序全局的错误处理程序，必须使用app_errorhandler。(<em>url_for()中需使用：命名空间+视图函数，如main.index</em>)<br><code>os.getenv()是os.environ.get()缩写</code></p>
+<ul>
+<li><p>生成requirements.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#  生成</div><div class="line">(venv) $ pip freeze &gt;requirements.txt</div><div class="line"></div><div class="line">#  重新创建</div><div class="line">(venv) $ pip install -r requirements.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>单元测试<br><a href="https://docs.python.org/2/library/unittest.html" target="_blank" rel="external">https://docs.python.org/2/library/unittest.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"># tests/test_basics.py：单元测试</div><div class="line">import unittest</div><div class="line">from flask import current_app</div><div class="line">from app import create_app, db</div><div class="line"></div><div class="line">class BasicsTestCase(unittest.TestCase):</div><div class="line">    def setUp(self):</div><div class="line">        self.app = create_app(&apos;testing&apos;)</div><div class="line">        self.app_context = self.app.app_context()</div><div class="line">        self.app_context.push()</div><div class="line">        db.create_all()</div><div class="line">    def tearDown(self):</div><div class="line">        db.session.remove()</div><div class="line">        db.drop_all()</div><div class="line">        self.app_context.pop()</div><div class="line">    def test_app_exists(self):</div><div class="line">        self.assertFalse(current_app is None)</div><div class="line">    def test_app_is_testing(self):</div><div class="line">        self.assertTrue(current_app.config[&apos;TESTING&apos;])</div><div class="line"></div><div class="line"># manage.py：启动单元测试的命令</div><div class="line">@manager.command</div><div class="line">def test():</div><div class="line">    &quot;&quot;&quot;Run the unit tests.&quot;&quot;&quot;</div><div class="line">    import unittest</div><div class="line">    tests = unittest.TestLoader().discover(&apos;tests&apos;)</div><div class="line">    unittest.TextTestRunner(verbosity=2).run(tests)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="第八章_用户认证">第八章 用户认证</h2><ul>
+<li><p>密码安全<br>计算加盐，密码散列值的正确方法，<a href="https://crackstation.net/hashing-security.htm" target="_blank" rel="external">https://crackstation.net/hashing-security.htm</a></p>
+</li>
+<li><p>认证用户</p>
+</li>
+<li>注册用户</li>
+<li>确认账户<br>登录之后才能验证，before_app_request中返回未确认页面显示。</li>
+<li>管理账户</li>
+</ul>
+<h2 id="第九章_用户角色">第九章 用户角色</h2><ul>
+<li>角色权限定义<br>这个和自己之前的想法一样，通过二进制位来表示。通过<code>&amp;</code>操作就很容易判断是否具有某个权限。</li>
+</ul>
+<p><img src="http://7ximdq.com1.z0.glb.clouddn.com/1452173674965" alt="此处输入图片的描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># app/models.py：权限常量</div><div class="line">class Permission:</div><div class="line">    FOLLOW = 0x01</div><div class="line">    COMMENT = 0x02</div><div class="line">    WRITE_ARTICLES = 0x04</div><div class="line">    MODERATE_COMMENTS = 0x08</div><div class="line">    ADMINISTER = 0x80</div></pre></td></tr></table></figure>
+<p><img src="http://7ximdq.com1.z0.glb.clouddn.com/1452173788172" alt="此处输入图片的描述"></p>
+<ul>
+<li>赋予角色</li>
+<li><p>角色验证<br>之前相对简单的版本没有做过多的介绍，但是我们再使用中已经使用到类似下面的这些修饰器，不过下面的这些写的更合理些。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># app/decorators.py：检查用户权限的自定义修饰器</div><div class="line">from functools import wraps</div><div class="line">from flask import abort</div><div class="line">from flask.ext.login import current_user</div><div class="line">def permission_required(permission):</div><div class="line">    def decorator(f):</div><div class="line">        @wraps(f)</div><div class="line">        def decorated_function(*args, **kwargs):</div><div class="line">            if not current_user.can(permission):</div><div class="line">                abort(403)</div><div class="line">            return f(*args, **kwargs)</div><div class="line">        return decorated_function</div><div class="line">    return decorator</div><div class="line"></div><div class="line">def admin_required(f):</div><div class="line">    return permission_required(Permission.ADMINISTER)(f)</div></pre></td></tr></table></figure>
+</li>
+<li><p>模板上下文自定义<br>在模板中可能也需要检查权限，所以Permission类为所有位定义了常量以便于获取。为了避免每次调用render_template()时都多添加一个模板参数，可以使用上下文处理器。上下文处理器能让变量在所有模板中全局可访问。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># app/main/__init__.py：把Permission 类加入模板上下文</div><div class="line">@main.app_context_processor</div><div class="line">def inject_permissions():</div><div class="line">    return dict(Permission=Permission)</div></pre></td></tr></table></figure>
+<h2 id="第十章_用户资料">第十章 用户资料</h2><ul>
+<li>资料信息</li>
+<li><p>资料页<br>用户访问时间，通过User类成员函数在before_request中更新，每次调用都要更新，感觉不合理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class User(UserMixin, db.Model):</div><div class="line">    # ...</div><div class="line">    def ping(self):</div><div class="line">        self.last_seen = datetime.utcnow()</div><div class="line">        db.session.add(self)</div><div class="line"></div><div class="line">@auth.before_app_request</div><div class="line">def before_request():</div><div class="line">    if current_user.is_authenticated():</div><div class="line">        current_user.ping()</div><div class="line">        if not current_user.confirmed and request.endpoint[:5] != &apos;auth.&apos;:</div><div class="line">            return redirect(url_for(&apos;auth.unconfirmed&apos;))</div></pre></td></tr></table></figure>
+</li>
+<li><p>资料编辑<br>区分普通用户和管理员，可在类中初始化选项内容，但是太固定，要是能不必使用Bootstrap，form能转化到自定义样式会好很多，也就是Bootstrap的form渲染模板可自定义。</p>
+</li>
+<li><p>用户头像<br>默认随机分配头像：第三方服务：<a href="http://www.gravatar.com/" target="_blank" rel="external">http://www.gravatar.com/</a><br>avatar/d4c74594d841139328695756648b6bd6</p>
+</li>
+</ul>
+<h2 id="第十一章_博客文章">第十一章 博客文章</h2><ul>
+<li>提交和显示文章<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@main.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])</div><div class="line">def index():</div><div class="line">    form = PostForm()</div><div class="line">    if current_user.can(Permission.WRITE_ARTICLES) and form.validate_on_submit():</div><div class="line">        post = Post(body=form.body.data,</div><div class="line">        author=current_user._get_current_object())</div><div class="line">        db.session.add(post)</div><div class="line">        return redirect(url_for(&apos;.index&apos;))</div><div class="line">    posts = Post.query.order_by(Post.timestamp.desc()).all()</div><div class="line">    return render_template(&apos;index.html&apos;, form=form, posts=posts)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>新文章对象的author属性值为表达式current_user._get_current_object()。变量current_user由Flask-Login提供，和所有上下文变量一样，也是通过线程内的代理对象实现。这个对象的表现类似用户对象，但实际上却是一个轻度包装，包含真正的用户对象。数据库需要真正的用户对象，因此要调用_get_current_object() 方法。</p>
+<ul>
+<li><p>资料页显示文章</p>
+</li>
+<li><p>分页显示<br>创建虚拟数据forgerypy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">class User(UserMixin, db.Model):</div><div class="line"># ...</div><div class="line">@staticmethod</div><div class="line">def generate_fake(count=100):</div><div class="line">    from sqlalchemy.exc import IntegrityError</div><div class="line">    from random import seed</div><div class="line">    import forgery_py</div><div class="line">    seed()</div><div class="line">    for i in range(count):</div><div class="line">        u = User(email=forgery_py.internet.email_address(),</div><div class="line">        username=forgery_py.internet.user_name(True),</div><div class="line">        password=forgery_py.lorem_ipsum.word(),</div><div class="line">        confirmed=True,</div><div class="line">        name=forgery_py.name.full_name(),</div><div class="line">        location=forgery_py.address.city(),</div><div class="line">        about_me=forgery_py.lorem_ipsum.sentence(),</div><div class="line">        member_since=forgery_py.date.date(True))</div><div class="line">        db.session.add(u)</div><div class="line">        try:</div><div class="line">            db.session.commit()</div><div class="line">        except IntegrityError:</div><div class="line">            db.session.rollback()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>对于commit我觉得在数据量小的时候，没必要add每一个都commit（当然可以保证失败之后任然继续commit），因为数据库commit还是很耗时间的，所以add完后一次性commit会快蛮多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class User(UserMixin, db.Model):</div><div class="line"># ...</div><div class="line">@staticmethod</div><div class="line">def generate_fake(count=100):</div><div class="line">    # ...</div><div class="line">        db.session.add(u)</div><div class="line">    try:</div><div class="line">        db.session.commit()</div><div class="line">    except IntegrityError:</div><div class="line">        db.session.rollback()</div></pre></td></tr></table></figure></p>
+<ul>
+<li>支持富文本文章<br>Flask-PageDown定义富文本编辑器<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#  app/__init__.py：初始化Flask-PageDown</div><div class="line">from flask.ext.pagedown import PageDown</div><div class="line"># ...</div><div class="line">pagedown = PageDown()</div><div class="line"># ...</div><div class="line">def create_app(config_name):</div><div class="line">    # ...</div><div class="line">    pagedown.init_app(app)</div><div class="line">    # ...</div><div class="line">    </div><div class="line">#  app/main/forms.py：启用Markdown 的文章表单</div><div class="line">from flask.ext.pagedown.fields import PageDownField</div><div class="line">class PostForm(Form):</div><div class="line">    body = PageDownField(&quot;What&apos;s on your mind?&quot;, validators=[Required()])</div><div class="line">    submit = SubmitField(&apos;Submit&apos;)</div><div class="line">    </div><div class="line">#  app/index.html：Flask-PageDown 模板声明</div><div class="line">&#123;% block scripts %&#125;</div><div class="line">&#123;&#123; super() &#125;&#125;</div><div class="line">&#123;&#123; pagedown.include_pagedown() &#125;&#125;</div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>服务端转换markdown文本为HTML，使用Bleach清理确保安全；SQLAlchemy可监听修改事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">app/models.py：在Post 模型中处理Markdown 文本</div><div class="line">from markdown import markdown</div><div class="line">import bleach</div><div class="line">class Post(db.Model):</div><div class="line">    # ...</div><div class="line">    body_html = db.Column(db.Text)</div><div class="line">    # ...</div><div class="line">    @staticmethod</div><div class="line">    def on_changed_body(target, value, oldvalue, initiator):</div><div class="line">        allowed_tags = [&apos;a&apos;, &apos;abbr&apos;, &apos;acronym&apos;, &apos;b&apos;, &apos;blockquote&apos;, &apos;code&apos;, &apos;em&apos;, &apos;i&apos;, &apos;li&apos;, &apos;ol&apos;, &apos;pre&apos;, &apos;strong&apos;, &apos;ul&apos;, &apos;h1&apos;, &apos;h2&apos;, &apos;h3&apos;, &apos;p&apos;]</div><div class="line">        target.body_html = bleach.linkify(bleach.clean(markdown(value, output_format=&apos;html&apos;), tags=allowed_tags, strip=True))</div><div class="line"></div><div class="line">db.event.listen(Post.body, &apos;set&apos;, Post.on_changed_body)</div></pre></td></tr></table></figure></p>
+<p><strong>疑惑：“缓存”到Post模型的字段？（加载时是否算change，flask提示找不到event，待解决）</strong><br><em>测试发现初次加载不会调用事件，修改才会调用。也就是如果采用markdown，第一次加载的是非渲染的？只有编辑过才会显示正常，这不科学，有待自看listen事件执行过程</em></p>
+<ul>
+<li><p>文章固定链接</p>
+</li>
+<li><p>文章编辑</p>
+</li>
+</ul>
+<h2 id="第十二章_关注与粉丝">第十二章 关注与粉丝</h2><ul>
+<li>数据库关系<br><strong>多对多</strong><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">registrations = db.<span class="keyword">Table</span>(<span class="string">'registrations'</span>,</div><div class="line">    db.<span class="keyword">Column</span>(<span class="string">'student_id'</span>, db.<span class="keyword">Integer</span>, db.ForeignKey(<span class="string">'students.id'</span>)),</div><div class="line">    db.<span class="keyword">Column</span>(<span class="string">'class_id'</span>, db.<span class="keyword">Integer</span>, db.ForeignKey(<span class="string">'classes.id'</span>))</div><div class="line">    )</div><div class="line"></div><div class="line">class Student(db.Model):</div><div class="line">    id = db.<span class="keyword">Column</span>(db.<span class="keyword">Integer</span>, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = db.<span class="keyword">Column</span>(db.<span class="keyword">String</span>)</div><div class="line">    classes = db.relationship(<span class="string">'Class'</span>, secondary=registrations, backref=db.backref(<span class="string">'students'</span>, lazy=<span class="string">'dynamic'</span>), lazy=<span class="string">'dynamic'</span>)</div><div class="line"></div><div class="line">class Class(db.Model):</div><div class="line">    id = db.<span class="keyword">Column</span>(db.<span class="keyword">Integer</span>, primary_key = <span class="keyword">True</span>)</div><div class="line">    name = db.<span class="keyword">Column</span>(db.<span class="keyword">String</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>secondary参数设置为关联表（registrations），backref参数用于处理关系的另一侧(students)，关联表registrations是简单表，并不是模型</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">s.classes.append(c)</div><div class="line">db.session.add(s)</div><div class="line"></div><div class="line">s.classes.remove(c)</div><div class="line"></div><div class="line">s.classes.all()</div><div class="line">c.students.all()</div></pre></td></tr></table></figure></p>
+<p><strong>自引用关系</strong></p>
+<p><strong>高级多对多关系</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># app/models/user.py：关注关联表的模型实现</div><div class="line">class Follow(db.Model):</div><div class="line">    __tablename__ = &apos;follows&apos;</div><div class="line">    follower_id = db.Column(db.Integer, db.ForeignKey(&apos;users.id&apos;),</div><div class="line">primary_key=True)</div><div class="line">    followed_id = db.Column(db.Integer, db.ForeignKey(&apos;users.id&apos;),</div><div class="line">primary_key=True)</div><div class="line">    timestamp = db.Column(db.DateTime, default=datetime.utcnow)</div></pre></td></tr></table></figure></p>
+<p>SQLAlchemy 不能直接使用这个关联表，因为如果这么做程序就无法访问其中的自定义字段。相反地，要把这个多对多关系的左右两侧拆分成两个基本的一对多关系，而且要定义成标准的关系。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class User(UserMixin, db.Model):</div><div class="line">    # ...</div><div class="line">    followed = db.relationship(&apos;Follow&apos;,foreign_keys=[Follow.follower_id],backref=db.backref(&apos;follower&apos;,lazy=&apos;joined&apos;),lazy=&apos;dynamic&apos;,cascade=&apos;all, delete-orphan&apos;)</div><div class="line">    followers = db.relationship(&apos;Follow&apos;,foreign_keys=[Follow.followed_id],backref=db.backref(&apos;followed&apos;,lazy=&apos;joined&apos;),lazy=&apos;dynamic&apos;,cascade=&apos;all, delete-orphan&apos;)</div></pre></td></tr></table></figure></p>
+<p>foreign_keys是为了消除外键之间的歧义，db.backref()参数不是指定这两个关系之间的引用关系，而是回引Follow模型。回引中的lazy参数指定为joined。lazy模式可以实现立即从联结查询中加载相关对象。</p>
+<p>例如，如果某个用户关注了100个用户，调用user.followed.all()后会返回一个列表，其中包含100 个Follow 实例，每一个实例的follower和followed 回引属性都指向相应的用户。<strong>设定为lazy=’joined’模式，就可在一次数据库查询中完成这些操作。</strong>如果把lazy设为默认值select，那么首次访问follower 和followed 属性时才会加载对应的用户，而且每个属性都需要一个单独的查询，这就意味着获取全部被关注用户时需要增加100次额外的数据库查询。</p>
+<p><strong>cascade 参数配置在父对象上执行的操作对相关对象的影响</strong>。比如，层叠选项可设定为：将用户添加到数据库会话后，要自动把所有关系的对象都添加到会话中。层叠选项的默认值能满足大多数情况的需求，但对这个多对多关系来说却不合用。删除对象时，默认的层叠行为是把对象联接的所有相关对象的外键设为空值。但在关联表中，删除记录后正确的行为应该是把指向该记录的实体也删除，因为这样能有效销毁联接。这就是层叠选项值delete-orphan 的作用。</p>
+<p><em>cascade 参数的值是一组由逗号分隔的层叠选项，这看起来可能让人有点困惑，但all 表示除了delete-orphan之外的所有层叠选项。设为all,delete-orphan 的意思是启用所有默认层叠选项，而且还要删除孤儿记录。</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># app/models.py：关注关系的辅助方法</div><div class="line">class User(db.Model):</div><div class="line">    # ...</div><div class="line">    def follow(self, user):</div><div class="line">        if not self.is_following(user):</div><div class="line">            f = Follow(follower=self, followed=user)</div><div class="line">            db.session.add(f)</div><div class="line">    </div><div class="line">    def unfollow(self, user):</div><div class="line">    f = self.followed.filter_by(followed_id=user.id).first()</div><div class="line">        if f:</div><div class="line">            db.session.delete(f)</div><div class="line">    </div><div class="line">    def is_following(self, user):</div><div class="line">        return self.followed.filter_by(followed_id=user.id).first() is not None</div><div class="line">    def is_followed_by(self, user):</div><div class="line">        return self.followers.filter_by(follower_id=user.id).first() is not None</div></pre></td></tr></table></figure>
+<ul>
+<li>数据库联合查询<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return db.session.query(Post).select_from(Follow).filter_by(follower_id=self.id).join(Post, Follow.followed_id == Post.author_id)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>db.session.query(Post) 指明这个查询要返回Post 对象；</li>
+<li>select_from(Follow) 的意思是这个查询从Follow 模型开始；</li>
+<li>filter_by(follower_id=self.id) 使用关注用户过滤follows 表；</li>
+<li>join(Post, Follow.followed_id == Post.author_id) 联结filter_by() 得到的结果和Post 对象。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#  优化</div><div class="line">return Post.query.join(Follow,Follow.followed_id==Post.author_id).filter(Follow.follower_id==self.id)</div></pre></td></tr></table></figure>
+<p>先执行联结操作再过滤看起来工作量会更大一些，<strong>但实际上这两种查询是等效的</strong>。SQLAlchemy首先收集所有的过滤器，然后再以最高效的方式生成查询。这两种查询生成的原生SQL指令是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># app/models.py：获取所关注用户的文章</div><div class="line">class User(db.Model):</div><div class="line">    # ...</div><div class="line">    @property</div><div class="line">    def followed_posts(self):</div><div class="line">        return Post.query.join(Follow, Follow.followed_id == Post.author_id).filter(Follow.follower_id == self.id)</div></pre></td></tr></table></figure>
+<p><em>followed_posts方法被定义为property，调用时无需()</em></p>
+<ul>
+<li>cookie使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#app/main/views.py：查询所有文章还是所关注用户的文章</div><div class="line">@main.route(&apos;/all&apos;)</div><div class="line">@login_required</div><div class="line">def show_all():</div><div class="line">    resp = make_response(redirect(url_for(&apos;.index&apos;)))</div><div class="line">    resp.set_cookie(&apos;show_followed&apos;, &apos;&apos;, max_age=30*24*60*60)</div><div class="line">    return resp</div><div class="line"></div><div class="line">@main.route(&apos;/followed&apos;)</div><div class="line">@login_required</div><div class="line">def show_followed():</div><div class="line">    resp = make_response(redirect(url_for(&apos;.index&apos;)))</div><div class="line">    resp.set_cookie(&apos;show_followed&apos;, &apos;1&apos;, max_age=30*24*60*60)</div><div class="line">    return resp</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>cookie 只能在响应对象中设置，因此这两个路由不能依赖Flask，要使用make_response()方法创建响应对象。</p>
+<h2 id="第十三章_用户评论">第十三章  用户评论</h2><ul>
+<li>评论数据库模型<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># app/models.py：Comment 模型</div><div class="line">class Comment(db.Model):</div><div class="line">    __tablename__ = &apos;comments&apos;</div><div class="line">    id = db.Column(db.Integer, primary_key=True)</div><div class="line">    body = db.Column(db.Text)</div><div class="line">    body_html = db.Column(db.Text)</div><div class="line">    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)</div><div class="line">    disabled = db.Column(db.Boolean)</div><div class="line">    author_id = db.Column(db.Integer, db.ForeignKey(&apos;users.id&apos;))</div><div class="line">    post_id = db.Column(db.Integer, db.ForeignKey(&apos;posts.id&apos;))</div><div class="line">    </div><div class="line">    @staticmethod</div><div class="line">    def on_changed_body(target, value, oldvalue, initiator):</div><div class="line">        allowed_tags = [&apos;a&apos;, &apos;abbr&apos;, &apos;acronym&apos;, &apos;b&apos;, &apos;code&apos;, &apos;em&apos;, &apos;i&apos;,</div><div class="line">        &apos;strong&apos;]</div><div class="line">        target.body_html = bleach.linkify(bleach.clean(</div><div class="line">        markdown(value, output_format=&apos;html&apos;),</div><div class="line">        tags=allowed_tags, strip=True))</div><div class="line">        db.event.listen(Comment.body, &apos;set&apos;, Comment.on_changed_body)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># app/models/user.py：users 和posts 表与comments 表之间的一对多关系</div><div class="line">class User(db.Model):</div><div class="line">    # ...</div><div class="line">    comments = db.relationship(&apos;Comment&apos;, backref=&apos;author&apos;, lazy=&apos;dynamic&apos;)</div><div class="line">    class Post(db.Model):</div><div class="line">    # ...</div><div class="line">    comments = db.relationship(&apos;Comment&apos;, backref=&apos;post&apos;, lazy=&apos;dynamic&apos;)</div></pre></td></tr></table></figure>
+<ul>
+<li>评论管理<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># app/templates/base.html：在导航条中加入管理评论链接</div><div class="line">...</div><div class="line">&#123;% if current_user.can(Permission.MODERATE_COMMENTS) %&#125;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;&#123;&#123; url_for(&apos;main.moderate&apos;) &#125;&#125;&quot;&gt;Moderate Comments&lt;/a&gt;&lt;/li&gt;</div><div class="line">&#123;% endif %&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># app/main/views.py：管理评论的路由</div><div class="line">@main.route(&apos;/moderate&apos;)</div><div class="line">@login_required</div><div class="line">@permission_required(Permission.MODERATE_COMMENTS)</div><div class="line">def moderate():</div><div class="line">    page = request.args.get(&apos;page&apos;, 1, type=int)</div><div class="line">    pagination = Comment.query.order_by(Comment.timestamp.desc()).paginate(page, per_page=current_app.config[&apos;FLASKY_COMMENTS_PER_PAGE&apos;],error_out=False)</div><div class="line">    comments = pagination.items</div><div class="line">    return render_template(&apos;moderate.html&apos;,comments=comments,pagination=pagination, page=page)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"># app/templates/moderate.html：评论管理页面的模板</div><div class="line">&#123;% extends &quot;base.html&quot; %&#125;</div><div class="line">&#123;% import &quot;_macros.html&quot; as macros %&#125;</div><div class="line">&#123;% block title %&#125;Flasky - Comment Moderation&#123;% endblock %&#125;</div><div class="line">&#123;% block page_content %&#125;</div><div class="line">&lt;div class=&quot;page-header&quot;&gt;</div><div class="line">&lt;h1&gt;Comment Moderation&lt;/h1&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&#123;% set moderate = True %&#125;</div><div class="line">&#123;% include &apos;_comments.html&apos; %&#125;</div><div class="line">&#123;% if pagination %&#125;</div><div class="line">    &lt;div class=&quot;pagination&quot;&gt;</div><div class="line">        &#123;&#123; macros.pagination_widget(pagination, &apos;.moderate&apos;) &#125;&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">&#123;% endif %&#125;</div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"># app/templates/_comments.html：渲染评论的正文</div><div class="line">...</div><div class="line">&lt;div class=&quot;comment-body&quot;&gt;</div><div class="line">&#123;% if comment.disabled %&#125;</div><div class="line">    &lt;p&gt;&lt;/p&gt;&lt;i&gt;This comment has been disabled by a moderator.&lt;/i&gt;&lt;/p&gt;</div><div class="line">&#123;% endif %&#125;</div><div class="line">&#123;% if moderate or not comment.disabled %&#125;</div><div class="line">    &#123;% if comment.body_html %&#125;</div><div class="line">        &#123;&#123; comment.body_html | safe &#125;&#125;</div><div class="line">    &#123;% else %&#125;</div><div class="line">        &#123;&#123; comment.body &#125;&#125;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">&#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">&#123;% if moderate %&#125;</div><div class="line">    &lt;br&gt;</div><div class="line">    &#123;% if comment.disabled %&#125;</div><div class="line">        &lt;a class=&quot;btn btn-default btn-xs&quot; href=&quot;&#123;&#123; url_for(&apos;.moderate_enable&apos;,</div><div class="line">        id=comment.id, page=page) &#125;&#125;&quot;&gt;Enable&lt;/a&gt;</div><div class="line">    &#123;% else %&#125;</div><div class="line">        &lt;a class=&quot;btn btn-danger btn-xs&quot; href=&quot;&#123;&#123; url_for(&apos;.moderate_disable&apos;,</div><div class="line">        id=comment.id, page=page) &#125;&#125;&quot;&gt;Disable&lt;/a&gt;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">&#123;% endif %&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"># app/main/views.py：评论管理路由</div><div class="line">@main.route(&apos;/moderate/enable/&lt;int:id&gt;&apos;)</div><div class="line">@login_required</div><div class="line">@permission_required(Permission.MODERATE_COMMENTS)</div><div class="line">def moderate_enable(id):</div><div class="line">    comment = Comment.query.get_or_404(id)</div><div class="line">    comment.disabled = False</div><div class="line">    db.session.add(comment)</div><div class="line">    db.session.commit()</div><div class="line">    return redirect(url_for(&apos;.moderate&apos;,page=request.args.get(&apos;page&apos;, 1, type=int)))</div><div class="line"></div><div class="line">@main.route(&apos;/moderate/disable/&lt;int:id&gt;&apos;)</div><div class="line">@login_required</div><div class="line">@permission_required(Permission.MODERATE_COMMENTS)</div><div class="line">def moderate_disable(id):</div><div class="line">    comment = Comment.query.get_or_404(id)</div><div class="line">    comment.disabled = True</div><div class="line">    db.session.add(comment)</div><div class="line">    db.session.commit()</div><div class="line">    return redirect(url_for(&apos;.moderate&apos;,page=request.args.get(&apos;page&apos;, 1, type=int)))</div></pre></td></tr></table></figure>
+<p><em>修改后需要提交数据</em></p>
+<h2 id="第十四章_应用编程接口">第十四章 应用编程接口</h2><blockquote>
+<p>有时候确实需要提供接口供其他应用程序使用，之前写过，估计不规范或者不安全。</p>
+</blockquote>
+<h3 id="REST简介">REST简介</h3><p><strong>客户端−服务器</strong><br>客户端和服务器之间必须有明确的界线。<br><strong>无状态</strong><br>客户端发出的请求中必须包含所有必要的信息。服务器不能在两次请求之间保存客户端的任何状态。<br><strong>缓存</strong><br>服务器发出的响应可以标记为可缓存或不可缓存，这样出于优化目的，客户端（或客户端和服务器之间的中间服务）可以使用缓存。<br><strong>接口统一</strong><br>客户端访问服务器资源时使用的协议必须一致，定义良好，且已经标准化。REST Web服务最常使用的统一接口是HTTP 协议。<br><strong>系统分层</strong><br>在客户端和服务器之间可以按需插入代理服务器、缓存或网关，以提高性能、稳定性和伸缩性。<br><strong>按需代码</strong><br>客户端可以选择从服务器上下载代码，在客户端的环境中执行。</p>
+<ul>
+<li>资源就是一切</li>
+</ul>
+<ol>
+<li>每个资源使用唯一的URL表示（一篇博客文章可以使用URL：<code>/api/posts/12345</code>表示）</li>
+<li>每一类资源集合要有一个URL（博客文章集合的URL可以是<code>/api/posts/</code>，评论集合的URL可以是<code>/api/comments/</code>）</li>
+</ol>
+<p><em>Flask请求：<code>/api/posts/1234</code>可重定向到路由<code>/api/posts/1234/</code>，反之不行</em></p>
+<ul>
+<li>请求方法</li>
+</ul>
+<p>表14-1　REST架构API中使用的HTTP请求方法<br>|请求方法|目标|说明|HTTP状态码<br>|————|-|——|:-:<br>|GET|单个资源的URL|获取目标资源|200<br>|GET|资源集合的URL|获取资源的集合（如果服务器实现了分页，就是一页中的资源）|200<br>|POST|资源集合的URL|创建新资源，并将其加入目标集合。服务器为新资源指派URL，并在响应的Location 首部中返回|201<br>|PUT|单个资源的URL|修改一个现有资源。如果客户端能为资源指派URL，还可用来创建新资源|200<br>|DELETE|单个资源的URL|删除一个资源|200<br>|DELETE|资源集合的URL|删除目标集合中的所有资源|200</p>
+<ul>
+<li>请求和响应主体</li>
+</ul>
+<p>一篇博客文章对应的资源可以使用如下的JSON 表示：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"url"</span>: <span class="string">"http://www.example.com/api/posts/12345"</span>,</div><div class="line">    <span class="attr">"title"</span>: <span class="string">"Writing RESTful APIs in Python"</span>,</div><div class="line">    <span class="attr">"author"</span>: <span class="string">"http://www.example.com/api/users/2"</span>,</div><div class="line">    <span class="attr">"body"</span>: <span class="string">"... text of the article here ..."</span>,</div><div class="line">    <span class="attr">"comments"</span>: <span class="string">"http://www.example.com/api/posts/12345/comments"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在设计良好的REST API中，客户端只需知道几个顶级资源的URL，其他资源的URL 则从响应中包含的链接上发掘。</p>
+<ul>
+<li>版本<br>由于接口等不在只为浏览器使用，在版本更新时必须考虑到其他客户端的更新情况，所以需要web服务的容错能力比一般的web程序强，既要支持旧版本的接口也要支持新版接口。通过接口版本的方式可以很好的对接口进行控制。比如<code>/api/v1.0/posts/</code></li>
+</ul>
+<h3 id="使用Flask提供REST_Web服务">使用Flask提供REST Web服务</h3><ul>
+<li>创建API蓝本<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//API 蓝本的结构</span></div><div class="line"><span class="string">|-flasky</span></div><div class="line">    <span class="string">|-app/</span></div><div class="line">        <span class="string">|-api_1_0</span></div><div class="line">            <span class="string">|-__init__.py</span></div><div class="line">            <span class="string">|-users.py</span></div><div class="line">            <span class="string">|-posts.py</span></div><div class="line">            <span class="string">|-comments.py</span></div><div class="line">            <span class="string">|-authentication.py</span></div><div class="line">            <span class="string">|-errors.py</span></div><div class="line">            <span class="string">|-decorators.py</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># app/api_1_0/__init__.py：API 蓝本的构造文件</div><div class="line">from flask import Blueprint</div><div class="line"></div><div class="line">api = Blueprint(&apos;api&apos;, __name__)</div><div class="line"></div><div class="line">from . import authentication, posts, users, comments, errors</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># app/_init_.py：注册API 蓝本</div><div class="line">def create_app(config_name):</div><div class="line">    # ...</div><div class="line">    from .api_1_0 import api as api_1_0_blueprint</div><div class="line">    app.register_blueprint(api_1_0_blueprint, url_prefix=&apos;/api/v1.0&apos;)</div><div class="line">    # ...</div></pre></td></tr></table></figure>
+<ul>
+<li>错误处理</li>
+</ul>
+<p>表14-2　API返回的常见HTTP状态码<br>|HTTP状态码|名　　称|说　　明<br>|-|-|-<br>|200 |OK（成功） |请求成功完成<br>|201 |Created（已创建） |请求成功完成并创建了一个新资源<br>|400 |Bad request（坏请求） |请求不可用或不一致<br>|401 |Unauthorized（未授权） |请求未包含认证信息<br>|403 |Forbidden（禁止） |请求中发送的认证密令无权访问目标<br>|404 |Notfound（未找到） |URL 对应的资源不存在<br>|405 |Method not allowed（不允许使用的方法）|指定资源不支持请求使用的方法<br>|500 |Internal server error（内部服务器错误）|处理请求的过程中发生意外错误</p>
+<p><strong>让404/500/403错误兼容API请求</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># app/main/errors.py：使用HTTP 内容协商处理错误</div><div class="line">@main.app_errorhandler(404)</div><div class="line">def page_not_found(e):</div><div class="line">    if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:</div><div class="line">        response = jsonify(&#123;&apos;error&apos;: &apos;not found&apos;&#125;)</div><div class="line">        response.status_code = 404</div><div class="line">        return response</div><div class="line">    return render_template(&apos;404.html&apos;), 404</div></pre></td></tr></table></figure></p>
+<p><strong>API错误处理</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># app/api_1_0/errors.py：API 蓝本中403 状态码的错误处理程序</div><div class="line">def forbidden(message):</div><div class="line">    response = jsonify(&#123;&apos;error&apos;: &apos;forbidden&apos;, &apos;message&apos;: message&#125;)</div><div class="line">    response.status_code = 403</div><div class="line">    return response</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>使用Flask-HTTPAuth认证用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"># app/api_1_0/authentication.py：初始化Flask-HTTPAuth</div><div class="line">from flask.ext.httpauth import HTTPBasicAuth</div><div class="line"></div><div class="line">auth = HTTPBasicAuth()</div><div class="line"></div><div class="line">@auth.verify_password</div><div class="line">def verify_password(email, password):</div><div class="line">    if email == &apos;&apos;:</div><div class="line">        g.current_user = AnonymousUser()</div><div class="line">        return True</div><div class="line">    user = User.query.filter_by(email = email).first()</div><div class="line">    if not user:</div><div class="line">        return False</div><div class="line">    g.current_user = user</div><div class="line">    return user.verify_password(password)</div><div class="line"></div><div class="line"></div><div class="line"># app/api_1_0/authentication.py：Flask-HTTPAuth 错误处理程序</div><div class="line">@auth.error_handler</div><div class="line">def auth_error():</div><div class="line">    return unauthorized(&apos;Invalid credentials&apos;)</div><div class="line">    </div><div class="line"># app/api_1_0/authentication.py：在before_request处理程序中进行认证</div><div class="line">from .errors import forbidden_error</div><div class="line">@api.before_request</div><div class="line">@auth.login_required</div><div class="line">def before_request():</div><div class="line">    if not g.current_user.is_anonymous and not g.current_user.confirmed:</div><div class="line">        return forbidden(&apos;Unconfirmed account&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>基于令牌的认证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"># app/models.py：支持基于令牌的认证</div><div class="line">class User(db.Model):</div><div class="line">    # ...</div><div class="line">    def generate_auth_token(self, expiration):</div><div class="line">        s = Serializer(current_app.config[&apos;SECRET_KEY&apos;], expires_in=expiration)</div><div class="line">        return s.dumps(&#123;&apos;id&apos;: self.id&#125;)</div><div class="line">    </div><div class="line">    @staticmethod</div><div class="line">    def verify_auth_token(token):</div><div class="line">        s = Serializer(current_app.config[&apos;SECRET_KEY&apos;])</div><div class="line">        try:</div><div class="line">            data = s.loads(token)</div><div class="line">        except:</div><div class="line">            return None</div><div class="line">    return User.query.get(data[&apos;id&apos;])</div><div class="line">    </div><div class="line"># app/api_1_0/authentication.py：支持令牌的改进验证回调</div><div class="line">@auth.verify_password</div><div class="line">def verify_password(email_or_token, password):</div><div class="line">    if email_or_token == &apos;&apos;:</div><div class="line">        g.current_user = AnonymousUser()</div><div class="line">        return True</div><div class="line">    if password == &apos;&apos;:</div><div class="line">        g.current_user = User.verify_auth_token(email_or_token)</div><div class="line">        g.token_used = True</div><div class="line">        return g.current_user is not None</div><div class="line">    user = User.query.filter_by(email=email_or_token).first()</div><div class="line">    if not user:</div><div class="line">        return False</div><div class="line">    g.current_user = user</div><div class="line">    g.token_used = False</div><div class="line">    return user.verify_password(password)</div><div class="line"></div><div class="line"># app/api_1_0/authentication.py：生成认证令牌</div><div class="line">@api.route(&apos;/token&apos;)</div><div class="line">def get_token():</div><div class="line">    if g.current_user.is_anonymous() or g.token_used:</div><div class="line">        return unauthorized(&apos;Invalid credentials&apos;)</div><div class="line">    return jsonify(&#123;&apos;token&apos;: g.current_user.generate_auth_token(expiration=3600), &apos;expiration&apos;: 3600&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong><em>既然是无状态，那通过令牌的方式实现认证不就不破坏了无状态原则？</em></strong></p>
+<ul>
+<li>资源和JSON的序列化转换<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"># app/models.py：把文章转换成JSON 格式的序列化字典</div><div class="line">class Post(db.Model):</div><div class="line">    # ...</div><div class="line">    def to_json(self):</div><div class="line">        json_post = &#123;</div><div class="line">            &apos;url&apos;: url_for(&apos;api.get_post&apos;, id=self.id, _external=True),</div><div class="line">            &apos;body&apos;: self.body,</div><div class="line">            &apos;body_html&apos;: self.body_html,</div><div class="line">            &apos;timestamp&apos;: self.timestamp,</div><div class="line">            &apos;author&apos;: url_for(&apos;api.get_user&apos;, id=self.author_id, _external=True),</div><div class="line">            &apos;comments&apos;: url_for(&apos;api.get_post_comments&apos;, id=self.id, _external=True)</div><div class="line">            &apos;comment_count&apos;: self.comments.count()</div><div class="line">            &#125;</div><div class="line">        return json_post</div><div class="line">        </div><div class="line"># app/models.py：把用户转换成JSON 格式的序列化字典</div><div class="line">class User(UserMixin, db.Model):</div><div class="line">    # ...</div><div class="line">    def to_json(self):</div><div class="line">        json_user = &#123;</div><div class="line">            &apos;url&apos;: url_for(&apos;api.get_post&apos;, id=self.id, _external=True),</div><div class="line">            &apos;username&apos;: self.username,</div><div class="line">            &apos;member_since&apos;: self.member_since,</div><div class="line">            &apos;last_seen&apos;: self.last_seen,</div><div class="line">            &apos;posts&apos;: url_for(&apos;api.get_user_posts&apos;, id=self.id, _external=True),</div><div class="line">            &apos;followed_posts&apos;:url_for(&apos;api.get_user_followed_posts&apos;,id=self.id, _external=True),</div><div class="line">            &apos;post_count&apos;: self.posts.count()</div><div class="line">        &#125;</div><div class="line">        return json_user</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>所有url_for()方法都指定了参数_external=True，这么做是为了生成完整的URL，而不是生成传统Web程序中经常使用的相对URL。</em></p>
+<ul>
+<li><p>实现资源端点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># app/api_1_0/posts.py：文章资源GET 请求的处理程序</div><div class="line">@api.route(&apos;/posts/&apos;)</div><div class="line">@auth.login_required</div><div class="line">def get_posts():</div><div class="line">    posts = Post.query.all()</div><div class="line">    return jsonify(&#123; &apos;posts&apos;: [post.to_json() for post in posts] &#125;)</div><div class="line"></div><div class="line">@api.route(&apos;/posts/&lt;int:id&gt;&apos;)</div><div class="line">@auth.login_required</div><div class="line">def get_post(id):</div><div class="line">    post = Post.query.get_or_404(id)</div><div class="line">    return jsonify(post.to_json())</div></pre></td></tr></table></figure>
+</li>
+<li><p>分页资源合集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># app/api_1_0/posts.py：分页文章资源</div><div class="line">@api.route(&apos;/posts/&apos;)</div><div class="line">def get_posts():</div><div class="line">    page = request.args.get(&apos;page&apos;, 1, type=int)</div><div class="line">    pagination = Post.query.paginate(page,per_page=current_app.config[&apos;FLASKY_POSTS_PER_PAGE&apos;],error_out=False)</div><div class="line">    posts = pagination.items</div><div class="line">    prev = None</div><div class="line">    if pagination.has_prev:</div><div class="line">        prev = url_for(&apos;api.get_posts&apos;, page=page-1, _external=True)</div><div class="line">    next = None</div><div class="line">    if pagination.has_next:</div><div class="line">        next = url_for(&apos;api.get_posts&apos;, page=page+1, _external=True)</div><div class="line">    return jsonify(&#123;</div><div class="line">        &apos;posts&apos;: [post.to_json() for post in posts],</div><div class="line">        &apos;prev&apos;: prev,</div><div class="line">        &apos;next&apos;: next,</div><div class="line">        &apos;count&apos;: pagination.total</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用HTTPie测试Web服务</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">(venv) $ pip <span class="keyword">install</span> httpie</div><div class="line"></div><div class="line">// 认证请求</div><div class="line">(venv) $ <span class="keyword">http</span> <span class="comment">--json --auth &lt;email&gt;:&lt;password&gt; GET \</span></div><div class="line">&gt; <span class="keyword">http</span>://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/api/v1<span class="number">.0</span>/posts</div><div class="line"></div><div class="line"><span class="keyword">HTTP</span>/<span class="number">1.0</span> <span class="number">200</span> OK</div><div class="line"><span class="keyword">Content</span>-<span class="keyword">Length</span>: <span class="number">7018</span></div><div class="line"><span class="keyword">Content</span>-<span class="keyword">Type</span>: application/<span class="keyword">json</span></div><div class="line"><span class="built_in">Date</span>: Sun, <span class="number">22</span> <span class="built_in">Dec</span> <span class="number">2013</span> <span class="number">08</span>:<span class="number">11</span>:<span class="number">24</span> GMT</div><div class="line"><span class="keyword">Server</span>: Werkzeug/<span class="number">0.9</span><span class="number">.4</span> Python/<span class="number">2.7</span><span class="number">.3</span></div><div class="line">&#123;</div><div class="line"><span class="string">"posts"</span>: [</div><div class="line">...</div><div class="line">],</div><div class="line"><span class="string">"prev"</span>: <span class="literal">null</span></div><div class="line"><span class="string">"next"</span>: <span class="string">"http://127.0.0.1:5000/api/v1.0/posts/?page=2"</span>,</div><div class="line"><span class="string">"count"</span>: <span class="number">150</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">// 匿名请求</div><div class="line">(venv) $ <span class="keyword">http</span> <span class="comment">--json --auth : GET http://127.0.0.1:5000/api/v1.0/posts/</span></div><div class="line"></div><div class="line">// 添加文章</div><div class="line">(venv) $ <span class="keyword">http</span> <span class="comment">--auth &lt;email&gt;:&lt;password&gt; --json POST \</span></div><div class="line">&gt; <span class="keyword">http</span>://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/api/v1<span class="number">.0</span>/posts/ \</div><div class="line">&gt; <span class="string">"body=I'm adding a post from the *command line*."</span></div><div class="line"></div><div class="line"><span class="keyword">HTTP</span>/<span class="number">1.0</span> <span class="number">201</span> CREATED</div><div class="line"><span class="keyword">Content</span>-<span class="keyword">Length</span>: <span class="number">360</span></div><div class="line"><span class="keyword">Content</span>-<span class="keyword">Type</span>: application/<span class="keyword">json</span></div><div class="line"><span class="built_in">Date</span>: Sun, <span class="number">22</span> <span class="built_in">Dec</span> <span class="number">2013</span> <span class="number">08</span>:<span class="number">30</span>:<span class="number">27</span> GMT</div><div class="line">Location: <span class="keyword">http</span>://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/api/v1<span class="number">.0</span>/posts/<span class="number">111</span></div><div class="line"><span class="keyword">Server</span>: Werkzeug/<span class="number">0.9</span><span class="number">.4</span> Python/<span class="number">2.7</span><span class="number">.3</span></div><div class="line">&#123;</div><div class="line"><span class="string">"author"</span>: <span class="string">"http://127.0.0.1:5000/api/v1.0/users/1"</span>,</div><div class="line"><span class="string">"body"</span>: <span class="string">"I'm adding a post from the *command line*."</span>,</div><div class="line"><span class="string">"body_html"</span>: <span class="string">"&lt;p&gt;I'm adding a post from the &lt;em&gt;command line&lt;/em&gt;.&lt;/p&gt;"</span>,</div><div class="line"><span class="string">"comments"</span>: <span class="string">"http://127.0.0.1:5000/api/v1.0/posts/111/comments"</span>,</div><div class="line"><span class="string">"comment_count"</span>: <span class="number">0</span>,</div><div class="line"><span class="string">"timestamp"</span>: <span class="string">"Sun, 22 Dec 2013 08:30:27 GMT"</span>,</div><div class="line"><span class="string">"url"</span>: <span class="string">"http://127.0.0.1:5000/api/v1.0/posts/111"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">// 令牌认证</div><div class="line">(venv) $ <span class="keyword">http</span> <span class="comment">--auth &lt;email&gt;:&lt;password&gt; --json GET \</span></div><div class="line">&gt; <span class="keyword">http</span>://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/api/v1<span class="number">.0</span>/token</div><div class="line"></div><div class="line"><span class="keyword">HTTP</span>/<span class="number">1.0</span> <span class="number">200</span> OK</div><div class="line"><span class="keyword">Content</span>-<span class="keyword">Length</span>: <span class="number">162</span></div><div class="line"><span class="keyword">Content</span>-<span class="keyword">Type</span>: application/<span class="keyword">json</span></div><div class="line"><span class="built_in">Date</span>: Sat, <span class="number">04</span> Jan <span class="number">2014</span> <span class="number">08</span>:<span class="number">38</span>:<span class="number">47</span> GMT</div><div class="line"><span class="keyword">Server</span>: Werkzeug/<span class="number">0.9</span><span class="number">.4</span> Python/<span class="number">3.3</span><span class="number">.3</span></div><div class="line">&#123;</div><div class="line"><span class="string">"expiration"</span>: <span class="number">3600</span>,</div><div class="line"><span class="string">"token"</span>: <span class="string">"eyJpYXQiOjEzODg4MjQ3MjcsImV4cCI6MTM4ODgyODMyNywiYWxnIjoiSFMy..."</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">// 令牌请求</div><div class="line">(venv) $ <span class="keyword">http</span> <span class="comment">--json --auth eyJpYXQ...: GET http://127.0.0.1:5000/api/v1.0/posts/</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="第十五章_测试">第十五章 测试</h2><ul>
+<li>获取代码覆盖报告<br><code>(venv) $ pip install coverage</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"># manage.py：覆盖检测</div><div class="line">#!/usr/bin/env python</div><div class="line">import os</div><div class="line">COV = None</div><div class="line">if os.environ.get(&apos;FLASK_COVERAGE&apos;):</div><div class="line">    import coverage</div><div class="line">    COV = coverage.coverage(branch=True, include=&apos;app/*&apos;)</div><div class="line">    COV.start()</div><div class="line"></div><div class="line"># ...</div><div class="line"></div><div class="line">@manager.command</div><div class="line">def test(coverage=False):</div><div class="line">    &quot;&quot;&quot;Run the unit tests.&quot;&quot;&quot;</div><div class="line">    if coverage and not os.environ.get(&apos;FLASK_COVERAGE&apos;):</div><div class="line">        import sys</div><div class="line">        os.environ[&apos;FLASK_COVERAGE&apos;] = &apos;1&apos;</div><div class="line">        os.execvp(sys.executable, [sys.executable] + sys.argv)</div><div class="line">    import unittest</div><div class="line">    tests = unittest.TestLoader().discover(&apos;tests&apos;)</div><div class="line">    unittest.TextTestRunner(verbosity=2).run(tests)</div><div class="line">    if COV:</div><div class="line">        COV.stop()</div><div class="line">        COV.save()</div><div class="line">        print(&apos;Coverage Summary:&apos;)</div><div class="line">        COV.report()</div><div class="line">        basedir = os.path.abspath(os.path.dirname(__file__))</div><div class="line">        covdir = os.path.join(basedir, &apos;tmp/coverage&apos;)</div><div class="line">        COV.html_report(directory=covdir)</div><div class="line">        print(&apos;HTML version: file://%s/index.html&apos; % covdir)</div><div class="line">        COV.erase()</div><div class="line">        </div><div class="line"># ...</div></pre></td></tr></table></figure>
+<ul>
+<li>Flask测试客户端<br><strong>测试web程序</strong><br>Flask内建了一个测试客户端用于解决（至少部分解决）测试需要的上下文环境问题。测试客户端能复现程序运行在Web服务器中的环境，让测试扮演成客户端从而发送请求。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">class FlaskClientTestCase(unittest.TestCase):</div><div class="line">    def setUp(self):</div><div class="line">        self.app = create_app(&apos;testing&apos;)</div><div class="line">        self.app_context = self.app.app_context()</div><div class="line">        self.app_context.push()</div><div class="line">        db.create_all()</div><div class="line">        Role.insert_roles()</div><div class="line">        self.client = self.app.test_client(use_cookies=True)</div><div class="line"></div><div class="line">    def tearDown(self):</div><div class="line">        db.session.remove()</div><div class="line">        db.drop_all()</div><div class="line">        self.app_context.pop()</div><div class="line"></div><div class="line">    def test_home_page(self):</div><div class="line">        response = self.client.get(url_for(&apos;main.index&apos;))</div><div class="line">        self.assertTrue(b&apos;Stranger&apos; in response.data)</div><div class="line"></div><div class="line">    def test_register_and_login(self):</div><div class="line">        # register a new account</div><div class="line">        response = self.client.post(url_for(&apos;auth.register&apos;), data=&#123;</div><div class="line">            &apos;email&apos;: &apos;john@example.com&apos;,</div><div class="line">            &apos;username&apos;: &apos;john&apos;,</div><div class="line">            &apos;password&apos;: &apos;cat&apos;,</div><div class="line">            &apos;password2&apos;: &apos;cat&apos;</div><div class="line">        &#125;)</div><div class="line">        self.assertTrue(response.status_code == 302)</div><div class="line"></div><div class="line">        # login with the new account</div><div class="line">        response = self.client.post(url_for(&apos;auth.login&apos;), data=&#123;</div><div class="line">            &apos;email&apos;: &apos;john@example.com&apos;,</div><div class="line">            &apos;password&apos;: &apos;cat&apos;</div><div class="line">        &#125;, follow_redirects=True)</div><div class="line">        self.assertTrue(re.search(b&apos;Hello,\s+john!&apos;, response.data))</div><div class="line">        self.assertTrue(</div><div class="line">            b&apos;You have not confirmed your account yet&apos; in response.data)</div><div class="line"></div><div class="line">        # send a confirmation token</div><div class="line">        user = User.query.filter_by(email=&apos;john@example.com&apos;).first()</div><div class="line">        token = user.generate_confirmation_token()</div><div class="line">        response = self.client.get(url_for(&apos;auth.confirm&apos;, token=token),</div><div class="line">                                   follow_redirects=True)</div><div class="line">        self.assertTrue(</div><div class="line">            b&apos;You have confirmed your account&apos; in response.data)</div><div class="line"></div><div class="line">        # log out</div><div class="line">        response = self.client.get(url_for(&apos;auth.logout&apos;), follow_redirects=True)</div><div class="line">        self.assertTrue(b&apos;You have been logged out&apos; in response.data)</div></pre></td></tr></table></figure>
+<p>测试会检查响应的状态码是否为302，这个代码表示重定向。调用post()方法时指定了参数follow_redirects=True，让测试客户端和浏览器一样，自动向重定向的URL发起GET请求。指定这个参数后，返回的不是302状态码，而是请求重定向的URL返回的响应。</p>
+<p><strong>测试web服务</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"># tests/test_api.py：使用Flask 测试客户端测试REST API</div><div class="line">class APITestCase(unittest.TestCase):</div><div class="line">    # ...</div><div class="line">    def get_api_headers(self, username, password):</div><div class="line">        return &#123;</div><div class="line">            &apos;Authorization&apos;:</div><div class="line">            &apos;Basic &apos; + b64encode((username + &apos;:&apos; + password).encode(&apos;utf-8&apos;)).decode(&apos;utf-8&apos;),</div><div class="line">            &apos;Accept&apos;: &apos;application/json&apos;,</div><div class="line">            &apos;Content-Type&apos;: &apos;application/json&apos;</div><div class="line">        &#125;</div><div class="line">    def test_no_auth(self):</div><div class="line">        response = self.client.get(url_for(&apos;api.get_posts&apos;),</div><div class="line">        content_type=&apos;application/json&apos;)</div><div class="line">        self.assertTrue(response.status_code == 401)</div><div class="line">    </div><div class="line">    def test_posts(self):</div><div class="line">        # 添加一个用户</div><div class="line">        r = Role.query.filter_by(name=&apos;User&apos;).first()</div><div class="line">        self.assertIsNotNone(r)</div><div class="line">        u = User(email=&apos;john@example.com&apos;,password=&apos;cat&apos;,confirmed=True,role=r)</div><div class="line">        db.session.add(u)</div><div class="line">        db.session.commit()</div><div class="line">        </div><div class="line">        # 写一篇文章</div><div class="line">        response = self.client.post(url_for(&apos;api.new_post&apos;), headers=self.get_auth_header(&apos;john@example.com&apos;, &apos;cat&apos;), data=json.dumps(&#123;&apos;body&apos;: &apos;body of the *blog* post&apos;&#125;))</div><div class="line">        self.assertTrue(response.status_code == 201)</div><div class="line">        url = response.headers.get(&apos;Location&apos;)</div><div class="line">        self.assertIsNotNone(url)</div><div class="line">        # 获取刚发布的文章</div><div class="line">        response = self.client.get(url, headers=self.get_auth_header(&apos;john@example.com&apos;, &apos;cat&apos;))</div><div class="line">        self.assertTrue(response.status_code == 200)</div><div class="line">        json_response = json.loads(response.data.decode(&apos;utf-8&apos;))</div><div class="line">        self.assertTrue(json_response[&apos;url&apos;] == url)</div><div class="line">        self.assertTrue(json_response[&apos;body&apos;] == &apos;body of the *blog* post&apos;)</div><div class="line">        self.assertTrue(json_response[&apos;body_html&apos;] == &apos;&lt;p&gt;body of the &lt;em&gt;blog&lt;/em&gt; post&lt;/p&gt;&apos;)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>使用Selenium进行端到端测试<br>web浏览器到web服务器的自动化测试工具</li>
+</ul>
+<p><strong>优雅的停止服务端</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># app/main/views.py：关闭服务器的路由</div><div class="line">@main.route(&apos;/shutdown&apos;)</div><div class="line">def server_shutdown():</div><div class="line">    if not current_app.testing:</div><div class="line">        abort(404)</div><div class="line">    shutdown = request.environ.get(&apos;werkzeug.server.shutdown&apos;)</div><div class="line">    if not shutdown:</div><div class="line">        abort(500)</div><div class="line">    shutdown()</div><div class="line">    return &apos;Shutting down...&apos;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">class SeleniumTestCase(unittest.TestCase):</div><div class="line">    # ...</div><div class="line">    @classmethod</div><div class="line">    def setUpClass(cls):</div><div class="line">        # start Firefox</div><div class="line">        try:</div><div class="line">            cls.client = webdriver.Firefox()</div><div class="line">        except:</div><div class="line">            pass</div><div class="line"></div><div class="line">        # skip these tests if the browser could not be started</div><div class="line">        if cls.client:</div><div class="line">            # create the application</div><div class="line">            cls.app = create_app(&apos;testing&apos;)</div><div class="line">            cls.app_context = cls.app.app_context()</div><div class="line">            cls.app_context.push()</div><div class="line"></div><div class="line">            # suppress logging to keep unittest output clean</div><div class="line">            import logging</div><div class="line">            logger = logging.getLogger(&apos;werkzeug&apos;)</div><div class="line">            logger.setLevel(&quot;ERROR&quot;)</div><div class="line"></div><div class="line">            # create the database and populate with some fake data</div><div class="line">            db.create_all()</div><div class="line">            Role.insert_roles()</div><div class="line">            User.generate_fake(10)</div><div class="line">            Post.generate_fake(10)</div><div class="line"></div><div class="line">            # add an administrator user</div><div class="line">            admin_role = Role.query.filter_by(permissions=0xff).first()</div><div class="line">            admin = User(email=&apos;john@example.com&apos;,</div><div class="line">                         username=&apos;john&apos;, password=&apos;cat&apos;,</div><div class="line">                         role=admin_role, confirmed=True)</div><div class="line">            db.session.add(admin)</div><div class="line">            db.session.commit()</div><div class="line"></div><div class="line">            # start the Flask server in a thread</div><div class="line">            threading.Thread(target=cls.app.run).start()</div><div class="line"></div><div class="line">            # give the server a second to ensure it is up</div><div class="line">            time.sleep(1) </div><div class="line"></div><div class="line">    @classmethod</div><div class="line">    def tearDownClass(cls):</div><div class="line">        if cls.client:</div><div class="line">            # stop the flask server and the browser</div><div class="line">            cls.client.get(&apos;http://localhost:5000/shutdown&apos;)</div><div class="line">            cls.client.close()</div><div class="line"></div><div class="line">            # destroy database</div><div class="line">            db.drop_all()</div><div class="line">            db.session.remove()</div><div class="line"></div><div class="line">            # remove application context</div><div class="line">            cls.app_context.pop()</div><div class="line"></div><div class="line">    def setUp(self):</div><div class="line">        if not self.client:</div><div class="line">            self.skipTest(&apos;Web browser not available&apos;)</div><div class="line"></div><div class="line">    def tearDown(self):</div><div class="line">        pass</div><div class="line">    </div><div class="line">    def test_admin_home_page(self):</div><div class="line">        # navigate to home page</div><div class="line">        self.client.get(&apos;http://localhost:5000/&apos;)</div><div class="line">        self.assertTrue(re.search(&apos;Hello,\s+Stranger!&apos;,</div><div class="line">                                  self.client.page_source))</div><div class="line"></div><div class="line">        # navigate to login page</div><div class="line">        self.client.find_element_by_link_text(&apos;Log In&apos;).click()</div><div class="line">        self.assertTrue(&apos;&lt;h1&gt;Login&lt;/h1&gt;&apos; in self.client.page_source)</div><div class="line"></div><div class="line">        # login</div><div class="line">        self.client.find_element_by_name(&apos;email&apos;).\</div><div class="line">            send_keys(&apos;john@example.com&apos;)</div><div class="line">        self.client.find_element_by_name(&apos;password&apos;).send_keys(&apos;cat&apos;)</div><div class="line">        self.client.find_element_by_name(&apos;submit&apos;).click()</div><div class="line">        self.assertTrue(re.search(&apos;Hello,\s+john!&apos;, self.client.page_source))</div><div class="line"></div><div class="line">        # navigate to the user&apos;s profile page</div><div class="line">        self.client.find_element_by_link_text(&apos;Profile&apos;).click()</div><div class="line">        self.assertTrue(&apos;&lt;h1&gt;john&lt;/h1&gt;&apos; in self.client.page_source)</div></pre></td></tr></table></figure>
+<h2 id="第十六章_性能">第十六章 性能</h2><ul>
+<li>记录慢查询<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># app/main/views.py：报告缓慢的数据库查询</div><div class="line">from flask.ext.sqlalchemy import get_debug_queries</div><div class="line"></div><div class="line">@main.after_app_request</div><div class="line">def after_request(response):</div><div class="line">    for query in get_debug_queries():</div><div class="line">        if query.duration &gt;= current_app.config[&apos;FLASKY_SLOW_DB_QUERY_TIME&apos;]:</div><div class="line">            current_app.logger.warning(&apos;Slow query: %s\nParameters: %s\nDuration: %fs\nContext: %s\n&apos; % (query.statement, query.parameters, query.duration, query.context))</div><div class="line">    return response</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>表16-1　Flask-SQLAlchemy记录的查询信息<br>|名　　称|说　　明<br>|-|<br>|statement |SQL 语句<br>|parameters |SQL 语句使用的参数<br>|start_time |执行查询时的时间<br>|end_time |返回查询结果时的时间<br>|duration |查询持续的时间，单位为秒<br>|context |表示查询在源码中所处位置的字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># config.py：启用缓慢查询记录功能的配置</div><div class="line">class Config:</div><div class="line">    # ...</div><div class="line">    SQLALCHEMY_RECORD_QUERIES = True</div><div class="line">    FLASKY_DB_QUERY_TIMEOUT = 0.5</div><div class="line">    # ...</div></pre></td></tr></table></figure>
+<ul>
+<li>分析源码<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># manage.py：在请求分析器的监视下运行程序</div><div class="line">@manager.command</div><div class="line">def profile(length=25, profile_dir=None):</div><div class="line">    &quot;&quot;&quot;Start the application under the code profiler.&quot;&quot;&quot;</div><div class="line">    from werkzeug.contrib.profiler import ProfilerMiddleware</div><div class="line">    app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[length], profile_dir=profile_dir)</div><div class="line">    app.run()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="第十七章_部署">第十七章 部署</h2><ul>
+<li><p>部署流程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># manage.py：部署命令</div><div class="line">@manager.command</div><div class="line">def deploy():</div><div class="line">    &quot;&quot;&quot;Run deployment tasks.&quot;&quot;&quot;</div><div class="line">    from flask.ext.migrate import upgrade</div><div class="line">    from app.models import Role, User</div><div class="line">    </div><div class="line">    # 把数据库迁移到最新修订版本</div><div class="line">    upgrade()</div><div class="line">    </div><div class="line">    # 创建用户角色</div><div class="line">    Role.insert_roles()</div><div class="line">    </div><div class="line">    # 让所有用户都关注自己</div><div class="line">    User.add_self_follows()</div></pre></td></tr></table></figure>
+</li>
+<li><p>错误日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">config.py：程序出错时发送电子邮件</div><div class="line">class ProductionConfig(Config):</div><div class="line">    # ...</div><div class="line">    @classmethod</div><div class="line">    def init_app(cls, app):</div><div class="line">        Config.init_app(app)</div><div class="line">        # 把错误通过电子邮件发送给管理员</div><div class="line">        import logging</div><div class="line">        from logging.handlers import SMTPHandler</div><div class="line">        credentials = None</div><div class="line">        secure = None</div><div class="line">        if getattr(cls, &apos;MAIL_USERNAME&apos;, None) is not None:</div><div class="line">            credentials = (cls.MAIL_USERNAME, cls.MAIL_PASSWORD)</div><div class="line">            if getattr(cls, &apos;MAIL_USE_TLS&apos;, None):</div><div class="line">                secure = ()</div><div class="line">            mail_handler = SMTPHandler(mailhost=(cls.MAIL_SERVER, cls.MAIL_PORT), fromaddr=cls.FLASKY_MAIL_SENDER, toaddrs=[cls.FLASKY_ADMIN], subject=cls.FLASKY_MAIL_SUBJECT_PREFIX + &apos; Application Error&apos;, credentials=credentials, secure=secure)</div><div class="line">            mail_handler.setLevel(logging.ERROR)</div><div class="line">            app.logger.addHandler(mail_handler)</div></pre></td></tr></table></figure>
+</li>
+<li><p>云部署</p>
+</li>
+<li>Heroku平台</li>
+<li>传统托管<br><em>架设服务器，导入环境变量，配置日志</em></li>
+</ul>
+<h2 id="第十八章_其他资源">第十八章 其他资源</h2><ul>
+<li><p>使用集成开发环境<br>PyCharm, PyDev, Python Tools For Visual Studio</p>
+<blockquote>
+<p>配置Flask 程序在调试器中启动时，记得为runserver命令加入—passthrougherrors —no-reload选项。第一个选项禁用Flask对错误的缓存，这样处理请求过程中抛出的异常才会传到调试器中。第二个选项禁用重载模块，而这个模块会搅乱某些调试器。</p>
+</blockquote>
+</li>
+<li><p>Flask扩展</p>
+</li>
+</ul>
+<ol>
+<li>Flask-Babel（<a href="https://pythonhosted.org/Flask-Babel/）：提供国际化和本地化支持。" target="_blank" rel="external">https://pythonhosted.org/Flask-Babel/）：提供国际化和本地化支持。</a></li>
+<li>FLask-RESTful（<a href="http://flask-restful.readthedocs.org/en/latest/）：开发" target="_blank" rel="external">http://flask-restful.readthedocs.org/en/latest/）：开发</a> REST API 的工具。</li>
+<li>Celery（<a href="http://docs.celeryproject.org/en/latest/）：处理后台作业的任务队列。" target="_blank" rel="external">http://docs.celeryproject.org/en/latest/）：处理后台作业的任务队列。</a></li>
+<li>Frozen-Flask（<a href="https://pythonhosted.org/Frozen-Flask/）：把" target="_blank" rel="external">https://pythonhosted.org/Frozen-Flask/）：把</a> Flask程序转换成静态网站。</li>
+<li>Flask-DebugToolbar（<a href="https://github.com/mgood/flask-debugtoolbar）：在浏览器中使用的调试工具。" target="_blank" rel="external">https://github.com/mgood/flask-debugtoolbar）：在浏览器中使用的调试工具。</a></li>
+<li>Flask-Assets（<a href="https://github.com/miracle2k/flask-assets）：用于合并、压缩、编译" target="_blank" rel="external">https://github.com/miracle2k/flask-assets）：用于合并、压缩、编译</a> CSS 和JavaScript 静态资源文件。</li>
+<li>Flask-OAuth（<a href="http://pythonhosted.org/Flask-OAuth/）：使用" target="_blank" rel="external">http://pythonhosted.org/Flask-OAuth/）：使用</a> OAuth服务进行认证。</li>
+<li>Flask-OpenID（<a href="http://pythonhosted.org/Flask-OpenID/）：使用" target="_blank" rel="external">http://pythonhosted.org/Flask-OpenID/）：使用</a> OpenID 服务进行认证。</li>
+<li>Flask-WhooshAlchemy（<a href="https://pythonhosted.org/Flask-WhooshAlchemy/）：使用" target="_blank" rel="external">https://pythonhosted.org/Flask-WhooshAlchemy/）：使用</a> Whoosh（<a href="http://pythonhosted.org/Whoosh/）实现Flask-SQLAlchemy" target="_blank" rel="external">http://pythonhosted.org/Whoosh/）实现Flask-SQLAlchemy</a> 模型的全文搜索。</li>
+<li>Flask-KVsession（<a href="http://flask-kvsession.readthedocs.org/en/latest/）：使用服务器端存储实现的另一种用户会话。" target="_blank" rel="external">http://flask-kvsession.readthedocs.org/en/latest/）：使用服务器端存储实现的另一种用户会话。</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/12/拉黑后端实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">拉黑后端实现</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="【读书】Flask Web Development" data-title="【读书】Flask Web Development" data-url="http://www.skywatcher.me/2016/02/11/【读书】Flask Web Development/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 SkyWatcher
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63278149-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+<script type="text/javascript">
+window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),f=c.length,u=i(a,o,r),d=0;f>d;d++)c[d].apply(u,n);return u}function a(t,e){f[t]=s(t).concat(e)}function s(t){return f[t]||[]}function c(){return n(e)}var f={};return{on:a,emit:e,create:c,listeners:s,_events:f}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:22,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(f){try{r("ierr",[f,(new Date).getTime(),!0])}catch(u){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(5),window.onerror=e;try{throw new Error}catch(f){"stack"in f&&(t(1),t(2),"addEventListener"in window&&t(3),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(4),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:9,2:8,3:6,4:10,5:3,6:23,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t){function e(){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var n=t("ee"),r=t("handle"),o=t(1),i=t(2);t("loader").features.stn=!0,t(3),n.on("fn-start",function(t){var e=t[0];e instanceof Event&&(this.bstStart=Date.now())}),n.on("fn-end",function(t,e){var n=t[0];n instanceof Event&&r("bst",[n,e,this.bstStart,Date.now()])}),o.on("fn-start",function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),o.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),this.bstType])}),i.on("fn-start",function(){this.bstStart=Date.now()}),i.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),n.on("pushState-start",function(){this.time=Date.now(),this.startPath=location.pathname+location.hash}),n.on("pushState-end",function(){r("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),"addEventListener"in window.performance&&(window.performance.addEventListener("webkitresourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.webkitClearResourceTimings()},!1),window.performance.addEventListener("resourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.clearResourceTimings()},!1)),document.addEventListener("scroll",e,!1),document.addEventListener("keypress",e,!1),document.addEventListener("click",e,!1)}},{1:9,2:8,3:7,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],6:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=t("ee").create(),i=t(1)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:24,ee:"QJf3ax",gos:"7eSDFh"}],7:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window.history,["pushState"],"-")},{1:24,ee:"QJf3ax"}],8:[function(t,e){var n=t("ee").create(),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:24,ee:"QJf3ax"}],9:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=t("ee").create(),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:24,ee:"QJf3ax"}],10:[function(t,e){function n(){f.inPlace(this,p,"fn-")}function r(t,e){f.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),f=c(a),u=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,f.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:6,2:24,ee:"QJf3ax"}],11:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,f="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,u=n(f);if(u&&(r.rxSize=u),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,f=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var f=n(o);f&&(r.txSize=f)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var u=0;c>u;u++)e.addEventListener(s[u],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:12,3:10,4:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],12:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],13:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:22,2:23,handle:"D5DuLP"}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):void(r.q&&(r.q[t]||(r.q[t]=[]),r.q[t].push(e)))}var r=t("ee").create();e.exports=n,n.ee=r,r.q={}},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=f.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===u.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=f.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=window,f=c.document;t(2);var u=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-686.min.js"},p=e.exports={offset:i(),origin:u,features:{}};f.addEventListener?(f.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(f.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:22,2:13,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],22:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],23:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],24:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,f;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){u([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return f=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,f],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,f(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,f?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){u([o,e,n,r])}}function f(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){u([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function u(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:23,ee:"QJf3ax"}]},{},["G9z0Bl",4,11,5]);
+;NREUM.info={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",licenseKey:"d950b4abf7",applicationID:"10100530",sa:1,agent:"js-agent.newrelic.com/nr-686.min.js"}
+</script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+<script type="text/javascript" charset="UTF-8" src="/js/anti-baidu-latest.js"></script>
+
+  </div>
+</body>
+</html>
